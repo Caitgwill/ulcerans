@@ -42,16 +42,16 @@ if [[ ! -f $OUTDIR/mulcerans.fna || ! -f $OUTDIR/mulcerans.faa || ! -f $OUTDIR/H
 fi
 
 
-#make mtb database to compare m ulcerans against. & makes them run in parallel. 
-makeblastdb -in $OUTDIR/H37RV.fna -dbtype nucl -out $OUTDIR/mtb_fna_db &
-makeblastdb -in $OUTDIR/H37Rv.faa -dbtype prot -out $OUTDIR/mtb_protein_db &
+#make mtb database to compare m ulcerans against. 
+makeblastdb -in $OUTDIR/H37RV.fna -dbtype nucl -out $OUTDIR/mtb_fna_db 
+#makeblastdb -in $OUTDIR/H37Rv.faa -dbtype prot -out $OUTDIR/mtb_protein_db 
 
 #blast ref nucleotide sequence to mtb database. Look for high scoring pairs (HSPs) and percent identity to evaluate homology.
 #Use BLAST viewer or Biopython for result visualization if needed. Outfmt 6 = tabular out put. outfmt 5 is an XML for more detailed records.
 blastn -query $OUTDIR/mulcerans.fna -db $OUTDIR/mtb_fna_db -out $OUTDIR/blast_fna_results.out -outfmt 6 -num_threads 8 &
 
 #blast ref protein sequence to mtb database. 
-blastp -query $OUTDIR/H37Rv.faa -db $OUTDIR/mtb_protein_db -out $OUTDIR/blast_protein_results.out -outfmt 6 -evalue 1e-5 -num_threads 8 &
+#blastp -query $OUTDIR/H37Rv.faa -db $OUTDIR/mtb_protein_db -out $OUTDIR/blast_protein_results.out -outfmt 6 -evalue 1e-5 -num_threads 8 &
 
 #wait until both processes are finished.
-wait
+#wait
