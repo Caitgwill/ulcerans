@@ -33,7 +33,7 @@ curl -s $FAA | gunzip -c > $OUTDIR/mulcerans.faa
 
 #download ref seq 
 curl -s $H37RVfna | gunzip -c > $OUTDIR/H37RV.fna
-curl -s $ | gunzip -c > $OUTDIR/H37Rv.faa
+curl -s $H37Rvfaa | gunzip -c > $OUTDIR/H37Rv.faa
 
 #check that downloads were successful before moving to blast.
 if [[ ! -f $OUTDIR/mulcerans.fna || ! -f $OUTDIR/mulcerans.faa || ! -f $OUTDIR/H37RV.fna || ! -f $OUTDIR/H37Rv.faa ]]; then
@@ -48,7 +48,7 @@ makeblastdb -in $OUTDIR/H37RV.fna -dbtype nucl -out $OUTDIR/mtb_fna_db
 
 #blast ref nucleotide sequence to mtb database. Look for high scoring pairs (HSPs) and percent identity to evaluate homology.
 #Use BLAST viewer or Biopython for result visualization if needed. Outfmt 6 = tabular out put. outfmt 5 is an XML for more detailed records.
-blastn -query $OUTDIR/mulcerans.fna -db $OUTDIR/mtb_fna_db -out $OUTDIR/blast_fna_results.out -outfmt 6 -num_threads 8 &
+blastn -query $OUTDIR/mulcerans.fna -db $OUTDIR/mtb_fna_db -out $OUTDIR/blast_fna_results.out -outfmt 6 -num_threads 8 
 
 #blast ref protein sequence to mtb database. 
 #blastp -query $OUTDIR/H37Rv.faa -db $OUTDIR/mtb_protein_db -out $OUTDIR/blast_protein_results.out -outfmt 6 -evalue 1e-5 -num_threads 8 &
