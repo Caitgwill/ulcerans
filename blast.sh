@@ -2,8 +2,8 @@
 #SBATCH --job-name=blast_ulcerans            # Job name
 #SBATCH --partition=batch		                        # Partition (queue) name
 #SBATCH --ntasks=1			                            # Single task job
-#SBATCH --cpus-per-task=8		                        # Number of cores per task 
-#SBATCH --mem=40gb			                            # Total memory for job
+#SBATCH --cpus-per-task=16		                        # Number of cores per task 
+#SBATCH --mem=60gb			                            # Total memory for job
 #SBATCH --time=00-01:00:00  		                        # Time limit hrs:min:sec
 #SBATCH --output=/scratch/cgw47706/scratch/log.%j.out
 #SBATCH --error=/scratch/cgw47706/scratch/log.%j.err
